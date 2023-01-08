@@ -12,6 +12,8 @@ import { CartComponent } from './Dashboard/cart/cart.component';
 import { CartItemComponent } from './Dashboard/cart/cart-item/cart-item.component';
 import { ProductItemComponent } from './Dashboard/product-list/product-item/product-item.component';
 
+import { CartpageComponent } from './cartpage/cartpage.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,7 @@ import { ProductItemComponent } from './Dashboard/product-list/product-item/prod
     CartComponent,
     CartItemComponent,
     ProductItemComponent,
+    CartpageComponent,
     
   ],
   imports: [

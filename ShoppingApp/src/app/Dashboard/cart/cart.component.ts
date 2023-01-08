@@ -31,6 +31,9 @@ cartTotal =0
     this.msg.getMsg().subscribe((product: Product)=>{
       this.addProductToCart(product)
     })
+
+    this.msg.setCartItems(this.cartItems)
+    
   }
 
 //To add product To cart 
@@ -48,13 +51,15 @@ cartTotal =0
         break;
       }
     } 
+
+    //if product exit is not true then it will add 
         if(!productExist){
         this.cartItems.push({
           productId: product.id,
           productName: product.name,
           qty: 1,
           price: product.price,
-         
+          image:product.image
         })
       }
     
@@ -62,10 +67,19 @@ cartTotal =0
      this.cartTotal = 0
     this.cartItems.forEach(item =>{
     this.cartTotal += (item.qty * item.price)
-
+    this.msg.setTotal(this.cartTotal)
     console.log("cart Total : ",this.cartTotal)
     })
   }
+
+
+  // removeCartItem(product: any){
+  //   this.cartItems.map((a:any,index:any)=>{
+  //     if(product.id === a.id){
+  //       this.cartItems.splice(index,1);
+  //     }
+  //   })
+  // }
 }
 
 

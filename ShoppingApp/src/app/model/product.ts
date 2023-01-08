@@ -3,13 +3,13 @@ export class Product {
     name: string;
     description: string;
     price: number;
-    imageUrl: string;
+    image: string;
   
-    constructor(id, name, description = '', price = 0, imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR608TWmLRWFNYPlY5xgKkgZPYe7mwv0GDMDtAS9nRdlVo4aytG') {
+    constructor(id, name, description, price, image ) {
       this.id = id
       this.name = name
       this.description = description
       this.price = price
-      this.imageUrl = imageUrl
+      this.image = image
     }
   }

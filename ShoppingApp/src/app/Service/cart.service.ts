@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { CartItem } from '../model/cart-item';
 import { Product } from '../model/product';
 
@@ -6,28 +7,42 @@ import { Product } from '../model/product';
   providedIn: 'root'
 })
 export class CartService {
-  cartTotal: number;
+  public cartItemList : any =[]
+  public productList = new BehaviorSubject<any>([]);
+  public search = new BehaviorSubject<string>("");
 
   constructor() { }
-  cartItems: CartItem[] = [];
+  getProducts(){
+    return this.productList.asObservable();
+  }
 
-  // addProductToCart(product: Product){
-  //   for(let i in this.cartItems){
-  //     if(this.cartItems[i].productId === product.id){
-  //       this.cartItems[i].qty++
-  //     }else {
-  //       this.cartItems.push({
-         
-  //         productName: product.name,
-  //         qty: 1,
-  //         price: product.price,
-  //         productId: product.id
-  //       })
-  //     }
-  //   }
-  //   this.cartTotal=0
-  //   this.cartItems.forEach(item =>{
-  //   this.cartTotal += (item.qty * item.price)
-  //   })
-  // }
+  setProduct(product : any){
+    this.cartItemList.push(...product);
+    this.productList.next(product);
+  }
+  addtoCart(product : any){
+    console.log("Inside cart s")
+    this.cartItemList.push(product);
+    
+    console.log("Value : ", this.cartItemList)
+    this.productList.next(this.cartItemList);
+    this.getTotalPrice();
+    console.log(this.cartItemList)
+  }
+  getTotalPrice() : number{
+    let grandTotal = 0;
+    this.cartItemList.map((a:any)=>{
+      grandTotal += a.total;
+    })
+    return grandTotal;
+  }
+  removeCartItem(product: any){
+    this.cartItemList.map((a:any, index:any)=>{
+      if(product.id=== a.id){
+        this.cartItemList.splice(index,1);
+      }
+    })
+    this.productList.next(this.cartItemList);
+  }
+ 
 }
