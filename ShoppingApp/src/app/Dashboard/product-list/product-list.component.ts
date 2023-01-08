@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/model/product';
-import { CartService } from 'src/app/Service/cart.service';
 import { MessengerService } from 'src/app/Service/messenger.service';
 import { ProductlistService } from 'src/app/Service/productlist.service';
 
@@ -15,7 +13,7 @@ export class ProductListComponent implements OnInit {
   searchKey:string ="";
   public searchTerm !: string;
 
-  constructor(private productService: ProductlistService,private cartService : CartService,private msg : MessengerService) { }
+  constructor(private productService: ProductlistService,private msg : MessengerService) { }
 
   ngOnInit() {
     this.loadProducts();
@@ -36,7 +34,7 @@ export class ProductListComponent implements OnInit {
       console.log(this.productList)
     });
 
-    this.cartService.search.subscribe((val:any)=>{
+    this.msg.search.subscribe((val:any)=>{
       this.searchKey = val;
     })
   }
@@ -44,9 +42,7 @@ export class ProductListComponent implements OnInit {
 
 
 
-  addtocart(item: any){
-    this.cartService.addtoCart(item);
-  }
+ 
 
 
 

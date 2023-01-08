@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../model/cart-item';
 import { Product } from '../model/product';
-import { CartService } from '../Service/cart.service';
+
 import { MessengerService } from '../Service/messenger.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class CartpageComponent implements OnInit {
 
 
 
-  constructor(private msg :MessengerService,private cartService : CartService) { }
+  constructor(private msg :MessengerService) { }
 
 ngOnInit() {
   // this.msg.getMsg().subscribe((product: Product)=>{
