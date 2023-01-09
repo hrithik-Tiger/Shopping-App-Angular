@@ -11,7 +11,7 @@ import { ProductListComponent } from './Dashboard/product-list/product-list.comp
 import { CartComponent } from './Dashboard/cart/cart.component';
 import { CartItemComponent } from './Dashboard/cart/cart-item/cart-item.component';
 import { ProductItemComponent } from './Dashboard/product-list/product-item/product-item.component';
-
+//import { NgxPaginationModule } from 'ngx-pagination';
 import { CartpageComponent } from './cartpage/cartpage.component';
 
 @NgModule({
@@ -33,7 +33,7 @@ import { CartpageComponent } from './cartpage/cartpage.component';
     FormsModule  ,
     ReactiveFormsModule,
     HttpClientModule ,    
-
+ // NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

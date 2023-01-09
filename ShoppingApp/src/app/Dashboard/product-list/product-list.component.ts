@@ -12,7 +12,9 @@ export class ProductListComponent implements OnInit {
   public filterCategory : any
   searchKey:string ="";
   public searchTerm !: string;
-
+  page:number=1;
+  tableSize: number=5;
+  tableSizes:any=[5,10,15,20]
   constructor(private productService: ProductlistService,private msg : MessengerService) { }
 
   ngOnInit() {
@@ -25,20 +27,30 @@ export class ProductListComponent implements OnInit {
       this.filterCategory = res;
      
      
-      this.productList.forEach((a:any) => {
-        if(a.category ==="women's clothing" || a.category ==="men's clothing"){
-          a.category ="fashion"
-        }
-        Object.assign(a,{quantity:1,total:a.price});
-      });
+     
       console.log(this.productList)
     });
 
     this.msg.search.subscribe((val:any)=>{
-      this.searchKey = val;
+     // this.searchKey = val;
+      
+      
+    
+      this.filterCategory = this.filter(val)
+
     })
   }
 
+  onTableDataChange(event:any){
+    this.page = event;
+    this.loadProducts();
+  }
+
+  onTableSizeChange(event:any):void{
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.loadProducts();
+  }
 
 
 
@@ -47,13 +59,20 @@ export class ProductListComponent implements OnInit {
 
 
 
-  filter(category:string){
+  filter(_filteritem:number){
+
+    console.log("Filter item ", _filteritem)
     this.filterCategory = this.productList
     .filter((a:any)=>{
-      if(a.category == category || category==''){
+    //  console.log("A cate :" ,a)
+      if( a.price < _filteritem || _filteritem == 0){
+        
+        
         return a;
       }
     })
+    console.log("Fibnal : ", this.filterCategory)
+    return this.filterCategory
   }
 
 

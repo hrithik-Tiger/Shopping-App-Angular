@@ -73,13 +73,7 @@ cartTotal =0
   }
 
 
-  // removeCartItem(product: any){
-  //   this.cartItems.map((a:any,index:any)=>{
-  //     if(product.id === a.id){
-  //       this.cartItems.splice(index,1);
-  //     }
-  //   })
-  // }
+  
 }
 
 

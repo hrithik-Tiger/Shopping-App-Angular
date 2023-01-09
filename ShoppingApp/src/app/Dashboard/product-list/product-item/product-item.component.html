@@ -4,6 +4,9 @@
 
   <div class="card-body">
     <p class="card-text">
+      <strong>{{ productItem.title }}</strong>
+    </p>
+    <p class="card-text">
       <strong>{{ productItem.price | currency:'INR' }}</strong>
     </p>
     <p class="card-text">{{ productItem.description | slice: 0:20 }}...</p>
