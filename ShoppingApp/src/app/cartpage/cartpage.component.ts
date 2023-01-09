@@ -13,6 +13,7 @@ export class CartpageComponent implements OnInit {
   cartItems :CartItem[]
  
   public grandTotal : number=0;
+  cartTotal: number;
 
 
 
@@ -87,5 +88,39 @@ ngOnInit() {
       }
     })
   }
-}
 
+  removeQtyItem(product: CartItem){
+    this.cartItems.map((a:any,index:any)=>{
+      if(product.qty == 1){
+        this.removeCartItem(product)
+      }
+      if(product.productId === a.productId){
+        a.qty--;
+      }
+    })
+    this.cartTotal = 0
+    this.cartItems.forEach(item =>{
+    this.cartTotal += (item.qty * item.price)
+    this.msg.setTotal(this.cartTotal)
+    console.log("cart Total : ",this.cartTotal)
+    this.grandTotal = this.cartTotal
+  })}
+
+  addQtyItem(product: CartItem){
+    this.cartItems.map((a:any,index:any)=>{
+      if(product.productId === a.productId){
+        a.qty++;
+      }
+    })
+    this.cartTotal = 0
+    this.cartItems.forEach(item =>{
+    this.cartTotal += (item.qty * item.price)
+    this.msg.setTotal(this.cartTotal)
+    console.log("cart Total : ",this.cartTotal)
+    this.grandTotal = this.cartTotal
+  }
+
+)}
+
+}
+  
