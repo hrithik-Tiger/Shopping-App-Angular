@@ -80,8 +80,9 @@ ngOnInit() {
 
 
   removeCartItem(product: CartItem){
+
     this.cartItems.map((a:any,index:any)=>{
-      if(product.productId === a.id){
+      if(product.productId === a.productId){
         this.cartItems.splice(index,1);
       }
     })
