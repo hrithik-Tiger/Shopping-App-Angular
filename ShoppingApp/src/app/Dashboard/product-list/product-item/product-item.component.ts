@@ -9,8 +9,9 @@ import { MessengerService } from 'src/app/Service/messenger.service';
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
-
+ 
  @Input() productItem: Product
+ 
   constructor( private msg : MessengerService) { }
 
   ngOnInit() {
