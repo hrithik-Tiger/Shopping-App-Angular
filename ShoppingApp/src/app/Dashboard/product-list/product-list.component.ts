@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   public searchTerm !: string;
   page:number=1;
   totalLength:any;
-  constructor(private productService: ProductlistService,private msg : MessengerService ,) { }
+  constructor(private productService: ProductlistService,private msg : MessengerService) { }
 
   ngOnInit() {
     this.loadProducts();
@@ -41,16 +41,7 @@ export class ProductListComponent implements OnInit {
     })
   }
 
-  // onTableDataChange(event:any){
-  //   this.page = event;
-  //   this.loadProducts();
-  // }
 
-  // onTableSizeChange(event:any):void{
-  //   this.tableSize = event.target.value;
-  //   this.page = 1;
-  //   this.loadProducts();
-  // }
 
 
 
@@ -79,7 +70,6 @@ export class ProductListComponent implements OnInit {
   
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
-    console.log(this.searchTerm);
     this.msg.search.next(this.searchTerm);
   }
 

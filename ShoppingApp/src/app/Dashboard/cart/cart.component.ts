@@ -31,8 +31,10 @@ cartTotal =0
     this.msg.getMsg().subscribe((product: Product)=>{
       this.addProductToCart(product)
     })
-
-    this.msg.setCartItems(this.cartItems)
+    
+       
+    
+ 
     
   }
 
@@ -48,15 +50,18 @@ cartTotal =0
       if(this.cartItems[i].productId === product.id){
         this.cartItems[i].qty++
         productExist =true;
+        this.msg.setCartItems(this.cartItems)
         break;
       }
     } 
 
     //if product exit is not true then it will add 
         if(!productExist){
+          console.log("Product : ",product.title)   
+         
         this.cartItems.push({
           productId: product.id,
-          productName: product.name,
+          productName: product.title,
           qty: 1,
           price: product.price,
           image:product.image
@@ -69,6 +74,7 @@ cartTotal =0
     this.cartTotal += (item.qty * item.price)
     this.msg.setTotal(this.cartTotal)
    
+    this.msg.setCartItems(this.cartItems)
     })
   }
 
