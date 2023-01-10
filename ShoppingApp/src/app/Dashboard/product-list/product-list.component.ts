@@ -14,6 +14,9 @@ export class ProductListComponent implements OnInit {
   public searchTerm !: string;
   page:number=1;
   totalLength:any;
+  isfetching = false;
+
+
   constructor(private productService: ProductlistService,private msg : MessengerService) { }
 
   ngOnInit() {
@@ -21,8 +24,9 @@ export class ProductListComponent implements OnInit {
     
   }
   loadProducts() {
+    this.isfetching=true
     this.productService.getProducts().subscribe(res=>{
-    
+      this.isfetching=false;
       this.productList = res;
       this.filterCategory = res;
         

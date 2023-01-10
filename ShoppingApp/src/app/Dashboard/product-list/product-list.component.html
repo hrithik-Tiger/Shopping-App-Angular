@@ -7,18 +7,27 @@
     </div>
    
     </div>
-    <div class="col-md-4" *ngFor="let item of filterCategory |
-     paginate : { itemsPerPage:5,
-                 currentPage:page,
-                 totalItems:totalLength
+    <div *ngIf="isfetching">
+      <app-loadingspinner></app-loadingspinner>
+    </div>
+
     
-                }">
-      <app-product-item [productItem]="item" ></app-product-item>
+    <div *ngIf="!isfetching" class="col-md-4">
+      <div  *ngFor="let item of filterCategory |
+      paginate : { itemsPerPage:5,
+                  currentPage:page,
+                  totalItems:totalLength
+     
+                 }">
+                 <app-product-item [productItem]="item" ></app-product-item>
+                
+                
+                </div>
       
      
        
       
-    </div>
+              </div>
    
   </div>
   <pagination-controls (pageChange)="page = $event">
