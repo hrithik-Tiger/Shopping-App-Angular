@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { MessengerService } from 'src/app/Service/messenger.service';
 import { ProductlistService } from 'src/app/Service/productlist.service';
 
@@ -13,9 +13,8 @@ export class ProductListComponent implements OnInit {
   searchKey:string ="";
   public searchTerm !: string;
   page:number=1;
-  tableSize: number=5;
-  tableSizes:any=[5,10,15,20]
-  constructor(private productService: ProductlistService,private msg : MessengerService) { }
+  totalLength:any;
+  constructor(private productService: ProductlistService,private msg : MessengerService ,) { }
 
   ngOnInit() {
     this.loadProducts();
@@ -23,9 +22,11 @@ export class ProductListComponent implements OnInit {
   }
   loadProducts() {
     this.productService.getProducts().subscribe(res=>{
+    
       this.productList = res;
       this.filterCategory = res;
-     
+        
+    this.totalLength = res.length;
      
      
       console.log(this.productList)
@@ -34,23 +35,22 @@ export class ProductListComponent implements OnInit {
     this.msg.search.subscribe((val:any)=>{
      // this.searchKey = val;
       
-      
-    
+   
       this.filterCategory = this.filter(val)
 
     })
   }
 
-  onTableDataChange(event:any){
-    this.page = event;
-    this.loadProducts();
-  }
+  // onTableDataChange(event:any){
+  //   this.page = event;
+  //   this.loadProducts();
+  // }
 
-  onTableSizeChange(event:any):void{
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.loadProducts();
-  }
+  // onTableSizeChange(event:any):void{
+  //   this.tableSize = event.target.value;
+  //   this.page = 1;
+  //   this.loadProducts();
+  // }
 
 
 

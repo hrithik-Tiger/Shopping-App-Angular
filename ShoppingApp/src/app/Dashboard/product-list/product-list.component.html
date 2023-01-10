@@ -1,31 +1,29 @@
-<div class="row">
-  <div>
-    <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="search products by price">
-      <span class="fas fa-search search-icon"></span>
-  </div>
- 
-  </div>
-  <!-- <div>
-    <select (change)="onTableSizeChange($event)"></select>
-  </div>    
- | paginate:{
-    itemsPerPage:tableSize,
-    currentPage: page,
-    totalItems: count}; let i=index 
-
--->
-  <div class="col-md-4" *ngFor="let item of filterCategory ">
-    <app-product-item [productItem]="item" ></app-product-item>
+<div>
+  <div class="row">
+    <div>
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="search products by price">
+        <span class="fas fa-search search-icon"></span>
+    </div>
+   
+    </div>
+    <div class="col-md-4" *ngFor="let item of filterCategory |
+     paginate : { itemsPerPage:5,
+                 currentPage:page,
+                 totalItems:totalLength
     
-    <!-- <div >
-      <pagination-controls>
-        previousLabel="prev"
-        nextLabel="Next"
-        (pageChange)="onTableDataChange($event)"
-
-      </pagination-controls>
-    </div> -->
+                }">
+      <app-product-item [productItem]="item" ></app-product-item>
+      
+     
+       
+      
+    </div>
+   
   </div>
-
+  <pagination-controls (pageChange)="page = $event">
+         
+         
+  
+  </pagination-controls>
 </div>
