@@ -37,7 +37,7 @@ ngOnInit() {
 
 
 
-
+ //To remove  Cart Items in Cart Page
   removeCartItem(product: CartItem){
 
     this.cartItems.map((a:any,index:any)=>{
@@ -47,6 +47,9 @@ ngOnInit() {
     })
   }
 
+
+  
+  //To decrease Quantity of Cart Items in Cart Page
   removeQtyItem(product: CartItem){
     this.cartItems.map((a:any,index:any)=>{
       if(product.qty == 1){
@@ -64,6 +67,9 @@ ngOnInit() {
     this.grandTotal = this.cartTotal
   })}
 
+
+
+  //To add Quantity of Cart Items in Cart Page
   addQtyItem(product: CartItem){
     this.cartItems.map((a:any,index:any)=>{
       if(product.productId === a.productId){

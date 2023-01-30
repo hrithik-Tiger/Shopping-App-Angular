@@ -23,6 +23,9 @@ export class ProductListComponent implements OnInit {
     this.loadProducts();
     
   }
+
+
+  //To fetch Products from messenger Service 
   loadProducts() {
     this.isfetching=true
     this.productService.getProducts().subscribe(res=>{
@@ -36,9 +39,9 @@ export class ProductListComponent implements OnInit {
       console.log(this.productList)
     });
 
+    //Subscribing Event
     this.msg.search.subscribe((val:any)=>{
-     // this.searchKey = val;
-      
+   
    
       this.filterCategory = this.filter(val)
 
@@ -53,28 +56,29 @@ export class ProductListComponent implements OnInit {
 
 
 
+// Filtering Products Based on Price 
 
   filter(_filteritem:number){
 
     console.log("Filter item ", _filteritem)
     this.filterCategory = this.productList
     .filter((a:any)=>{
-    //  console.log("A cate :" ,a)
+   
       if( a.price < _filteritem || _filteritem == 0){
         
         
         return a;
       }
     })
-    console.log("Fibnal : ", this.filterCategory)
+   
     return this.filterCategory
   }
 
 
-  
+  //Sending search price as a Behaviour Subject 
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
-    this.msg.search.next(this.searchTerm);
+    this.msg.search.next(this.searchTerm);    //Triggering Event
   }
 
 }

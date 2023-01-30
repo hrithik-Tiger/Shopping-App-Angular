@@ -16,6 +16,8 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  //Sending the item in messenger service to trigger an event
   handleAddToCart() {
     
       this.msg.sendMsg(this.productItem)

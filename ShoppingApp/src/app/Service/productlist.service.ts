@@ -46,6 +46,9 @@ export class ProductlistService {
   //   return this.product;
   // }
 
+
+
+  //Fetching Products from Api 
   getProducts(){
     return this.http.get<any>(this.productUrl).pipe(map((res:any)=>{
       return res;
